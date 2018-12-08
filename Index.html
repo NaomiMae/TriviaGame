@@ -6,7 +6,7 @@
   <title>Beyonce Trivia Game</title>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="assets/javascript/app.js"></script>
-  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+  <!-- <link rel="stylesheet" type="text/css" href="assets/css/style.css"> -->
   <!-- <link rel="stylesheet" href="./assets/css/style.css"> -->
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,15 +22,18 @@
 
   <div class="container" id="mainBody">
     <div class="header text-center clearfix">
-      <h1 class="text-muted">How well do you know Beyonce?</h1>
+      <h1 class="Header">How well do you know Beyonce?</h1>
     </div>
+    <hr class="style1">
     <div class="wholeContainer">
-      <div class="container">
+      <div class="containertwo">
         <div id="game">
           <h2>Beyonce Trivia Game</h2>
           <p id="remaining-time" class="main">Remaining Time: <span id="timer" id=></span></p>
           <p id="gapTime" class="main"> <span id="timerTwo"></span></p>
           <p id="question" class="main"></p>
+          <h2 id="answersShown"></h2>
+          <img id="image" src="">
         </div>
         
       </div>
@@ -39,7 +42,7 @@
         <div id="choices" class="text-center">
           <button id="start">Start Game</button>
           <div id="options">
-            <div id="myQuestions"></div>
+            <div><h2 id="myQuestions"></h2></div>
             <!-- <div> <img id = "firstAnswer" src="assets/images/BeyonceBaby.gif">
             </div>  -->
             <button class="answer1 answers"></button>
