@@ -11,10 +11,10 @@ h2{
   text-align: center;
 }
 .container{
-  width: 610px;
-  position: relative;
-  left: 300px;
-  top: 100px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
   background-color: gray;
   opacity: 0.7;
   border-radius: 20px;
@@ -49,6 +49,11 @@ h2{
     font-family: Arial, Helvetica, sans-serif;
     font: italic;
     color:white;
-    position: relative;
-    left: 130px;
+    display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+.answers:hover { 
+    background-color:violet;
 }

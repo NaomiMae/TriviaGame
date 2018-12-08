@@ -1,5 +1,6 @@
 $(document).ready(function () {
   $("#remaining-time").hide();
+  $("#gap-time").hide();
   $(".answers").hide();
   $("#start").on("click", startGame);
   // $(document).on('click' , '.option', guessChecker);
@@ -11,7 +12,7 @@ var incorrectAnswers = 0;
 var unanswered = 0;
 var currentSet = 0;
 var timer = 21;
-var timerTwo = 5;
+var timerTwo = 7;
 var timerOn = false;
 var timerId = "";
 var timerStart = "";
@@ -24,7 +25,7 @@ var beyonce = [{
   option3: "1982",
   option4: "1985",
   answer: "1981",
-  img: "assets/images/BeyonceBaby.gif",
+  // img: "assets/images/BeyonceBaby.gif",
 
 },
 {
@@ -34,7 +35,7 @@ var beyonce = [{
   option3: "Atlanta, Ga",
   option4: "New York, Ny",
   answer: "Houston, Tx",
-  img: "",
+  // img: "",
 },
 {
   question: "When did Beyonce go solo?",
@@ -43,7 +44,7 @@ var beyonce = [{
   option3: "2006",
   option4: "2005",
   answer: "2003",
-  img: "...img",
+  // img: "...img",
 },
 {
   question: "What's the name of Beyonce's second solo album?",
@@ -52,7 +53,7 @@ var beyonce = [{
   option3: "Beyonce",
   option4: "Sasha Fierce",
   answer: "Beyonce",
-  img: "...img",
+  // img: "...img",
 },
 {
   question: "How many SOLO albums has Beyonce released?",
@@ -61,7 +62,7 @@ var beyonce = [{
   option3: "5",
   option4: "7",
   answer: "7",
-  img: "...img",
+  // img: "...img",
 },]
 
 
@@ -108,29 +109,42 @@ function nextQuestion() {
 
 };
 function yayYou() {
-  // timer = 5;
+  gifTimer();
+  // timerTwo = 5;
+  // timerTwo--;
   // clearInterval(countDown);
+  $("#gap-time").show();
+  $("#timeTwo").show();
+  $("#timerTwo").text(timerTwo);
   $("#myQuestions").hide();
   $(".answers").hide();
   $("#remaining-time").hide();
+  $("#answersShown").show();
   $("#answersShown").text("Yay you got it! The correct answer was " + (beyonce[i].answer));
-  $("#image").attr("src", beyonce[i].img);
-  // if (timer <== 0){
-  newScreen();
+  // $("#image").attr("src", beyonce[i].img);
+  
 }
+// if (timerTwo === 0){
+//   newScreen();
+//   }
 function booYou() {
+  gifTimer();
+  $("#gap-time").show();
+  $("#timeTwo").show();
+  $("#timerTwo").text(timerTwo);
   // timer = 5;
   // clearInterval(countDown);
   $("#myQuestions").hide();
   $(".answers").hide();
   $("#remaining-time").hide();
+  $("#answersShown").show();
   $("#answersShown").text("So sorry the correct answer was " + (beyonce[i].answer));
-  $("#image").attr("src", beyonce[i].img);
+  // $("#image").attr("src", beyonce[i].img);
   // if (timer <== 0){
-  newScreen();
+  // newScreen();
 }
 
-var countDown = setInterval(timesUp, 1000);
+// var countDown = setInterval(timesUp, 1000);
 
 
 function timesUp() {
@@ -142,10 +156,29 @@ function timesUp() {
     i++;
     booYou();
     unanswered++;
+    $("#gap-time").show();
+
 
   }
 }
+function gifTimer(){
+  timerTwo--;
+  $("#timerTwo").text(timerTwo);
+  if (timerTwo === 0) {
+    // i++;
+  // clearInterval(shortTime);
+  $("#image").hide();
+  $("#myQuestions").show();
+  $(".answers").show();
+  $("#timerTwo").hide();
+  $("#answersShown").hide();
+  $("#gap-time").hide();
+  i++;
+  newScreen();
+}
+}
   function newScreen() {
+    console.log("here");
     timer = 21;
     timer--;
     $("#timer").text(timer);
@@ -159,6 +192,7 @@ function timesUp() {
       $(".answer2").text(beyonce[i].option2);
       $(".answer3").text(beyonce[i].option3);
       $(".answer4").text(beyonce[i].option4);
+        // i++
       // $("#firstAnswer").
       // if (timer === 0){
       //   clearInterval(timerId);
@@ -182,7 +216,9 @@ function timesUp() {
     }
   }
   // var reStart = startInterval ( timesUp, 1000);  
-  var countDown = setInterval(timesUp, 1000);
+var countDown = setInterval(timesUp, 1000);
+
+var shortTime = setInterval(gifTimer, 1000);
 
 
   // function timesUp() {
@@ -198,23 +234,18 @@ function timesUp() {
   //   }
   // }
 
-
-
-
-
-
-
-
   var i = 0;
   $(document).on("click", ".answers", function () {
     timer = 21;
+    timerTwo = 6;
+    gifTimer();
     if ($(this).text() === beyonce[i].answer) {
       // alert("test");
       timer = 21;
       console.log(this)
-      // i++;
       correctAnswers++;
-      i++;
+      // i++;
+      $("#timerTwo").show();
       yayYou();
       // newScreen();
 
@@ -222,9 +253,11 @@ function timesUp() {
       incorrectAnswers++;
       console.log(this)
       timer = 21;
-      i++;
+      timerTwo = 6;
+      // i++;
+      gifTimer();
       booYou();
-      newScreen();
+      // newScreen();
 
     }
 
