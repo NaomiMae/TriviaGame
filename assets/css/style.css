@@ -1,0 +1,18 @@
+
+#mainBody{
+  width: 610px;
+  position: relative;
+  left: 200px;
+  top: 100px;
+  background-color: #57bab6;
+  border-radius: 20px;
+  border: 20px solid #ff5d26;
+  height: 700px;
+  
+}
+#start{
+  background-color: black;
+  color: white;
+  padding: 20px;
+  border-radius: 2px;
+}
