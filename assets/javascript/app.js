@@ -2,6 +2,7 @@ $(document).ready(function () {
   $("#remaining-time").hide();
   $("#gap-time").hide();
   $(".answers").hide();
+  $("#image").hide();
   $("#start").on("click", startGame);
   // $(document).on('click' , '.option', guessChecker);
   // $("#firstAnswer").hide(); 
@@ -12,7 +13,7 @@ var incorrectAnswers = 0;
 var unanswered = 0;
 var currentSet = 0;
 var timer = 21;
-var timerTwo = 7;
+var timerTwo;
 var timerOn = false;
 var timerId = "";
 var timerStart = "";
@@ -25,7 +26,7 @@ var beyonce = [{
   option3: "1982",
   option4: "1985",
   answer: "1981",
-  // img: "assets/images/BeyonceBaby.gif",
+  img: "assets/images/BeyonceBaby.gif",
 
 },
 {
@@ -35,7 +36,7 @@ var beyonce = [{
   option3: "Atlanta, Ga",
   option4: "New York, Ny",
   answer: "Houston, Tx",
-  // img: "",
+  img: "assets/images/Houston.gif",
 },
 {
   question: "When did Beyonce go solo?",
@@ -44,25 +45,25 @@ var beyonce = [{
   option3: "2006",
   option4: "2005",
   answer: "2003",
-  // img: "...img",
+  img: "assets/images/Single.gif",
 },
 {
-  question: "What's the name of Beyonce's second solo album?",
-  option1: "Dangerously in Love",
-  option2: "Formation",
+  question: "What's a name of a Beyonce's album?",
+  option1: "Drunk in Love",
+  option2: "Information",
   option3: "Beyonce",
-  option4: "Sasha Fierce",
+  option4: "Tasha Farce",
   answer: "Beyonce",
-  // img: "...img",
+  img: "assets/images/Beyonce.gif",
 },
 {
-  question: "How many SOLO albums has Beyonce released?",
-  option1: "3",
-  option2: "6",
-  option3: "5",
-  option4: "7",
-  answer: "7",
-  // img: "...img",
+  question: "What's the name of Beyonce's first born?",
+  option1: "Saint",
+  option2: "Red",
+  option3: "Violet",
+  option4: "Blue",
+  answer: "Blue",
+  img: "assets/images/Blue.gif",
 },]
 
 
@@ -121,7 +122,8 @@ function yayYou() {
   $("#remaining-time").hide();
   $("#answersShown").show();
   $("#answersShown").text("Yay you got it! The correct answer was " + (beyonce[i].answer));
-  // $("#image").attr("src", beyonce[i].img);
+  $("#image").show();
+  $("#image").attr("src", beyonce[i].img);
   
 }
 // if (timerTwo === 0){
@@ -139,7 +141,8 @@ function booYou() {
   $("#remaining-time").hide();
   $("#answersShown").show();
   $("#answersShown").text("So sorry the correct answer was " + (beyonce[i].answer));
-  // $("#image").attr("src", beyonce[i].img);
+  $("#image").show();
+  $("#image").attr("src", beyonce[i].img);
   // if (timer <== 0){
   // newScreen();
 }
@@ -152,13 +155,14 @@ function timesUp() {
 
   $("#timer").text(timer);
   if (timer === 0) {
-    clearInterval(countDown);
-    i++;
-    booYou();
+    // clearInterval(countDown);
+    // i++;
+    timerTwo = 8;
     unanswered++;
     $("#gap-time").show();
-
-
+    // i++;
+    gifTimer();
+    booYou();
   }
 }
 function gifTimer(){
@@ -257,86 +261,12 @@ var shortTime = setInterval(gifTimer, 1000);
       // i++;
       gifTimer();
       booYou();
+      $("#timerTwo").show();
       // newScreen();
 
     }
 
   })
-  //   function timerRunning(){
-  //     if(timer > -1 && currentSet < Object.keys(beyonce.questions).length){
-  //       $('#timer').text(timer);
-  //       timer--;
-  //     }
-  //     else if(timer === -1){
-  //       unanswered++;
-  //       result = false;
-  //       clearInterval(timerId);
-  //       resultId = setTimeout(guessResult, 1000);
-  //       $("#timer").hide(timer);
-  //       $("#remaining-time").hide();
-  //       $("#question").hide();
-  //       $('#options').hide();
-  //       // alert("you got it");
-  //       $("#results").html("Out of time! The answer was " + Object.values(beyonce.answers)[currentSet] );
-  //       nextQuestion();
-
-  //       // $("#results").html('<h3>Out of time! The answer was '+ Object.values(beyonce.answers)[currentSet] +'</h3>');
-  //     }
-  //     // if all the questions have been shown end the game, show results
-  //     else if(currentSet === Object.keys(beyonce.questions).length){
-
-  // adds results of game (correct, incorrect, unanswered) to the page
-  // if (i = beyonce.length){
-
-  //   $('#results')
-  //     .html('<h3>Thank you for playing!</h3>'+
-  //     '<p>Correct: '+ correctAnswers +'</p>'+
-  //     '<p>Incorrect: '+ incorrectAnswers +'</p>'+
-  //     '<p>Unaswered: '+ unanswered +'</p>'+
-  //     '<p>Please play again!</p>');
-  //   }
-  //       // hide game sction
-  //       $('#game').hide();
-
-  //       // show start button to begin a new game
-  //       $('#start').show();
-  //     }
-
-  //   };
-  //  var currentAnswer = Object.values(beyonce.answers)[currentSet];
-  //   function guessChecker() {
-  //     // var resultId;
-
-  //     if($(this).text() === currentAnswer){
-  //       $(this).addClass('btn-success').removeClass('btn-info');
-  //       correctAnswers++;
-  //       clearInterval(timerId);
-  //       resultId = setTimeout(guessResult, 1000);
-  //       thankYouNext();
-
-  //     }
-
-  //     // else the user picked the wrong option, increment incorrect
-  //     else if($(this).text() !== currentAnswer) {
-  //       // turn button clicked red for incorrect
-  //       $(this).addClass('btn-danger').removeClass('btn-info');
-
-  //       incorrectAnswers++;
-  //       clearInterval(timerId);
-  //       resultId = setTimeout(guessResult, 1000);
-  //       // $('#results').html('<h3>Better luck next time! '+ currentAnswer +'</h3>');
-  //       $("#timer").hide(timer);
-  //       $("#remaining-time").hide();
-  //       $("#question").hide();
-  //       $('#options').hide();
-  //       // alert("you got it");
-  //       $("#results").html("Maybe next time...The answer was " + currentAnswer );
-  //       nextQuestion();
-  //     }
-
-
-  // };
-
 
   function guessResult() {
     currentSet++;
