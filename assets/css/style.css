@@ -36,7 +36,13 @@ h2{
   width: 50%;
   height: 50%;
 }
-#start{
+#start {
+  background-color: black;
+  color: white;
+  padding: 20px;
+  border-radius: 2px;
+}
+#restart {
   background-color: black;
   color: white;
   padding: 20px;

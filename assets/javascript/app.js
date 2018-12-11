@@ -4,6 +4,7 @@ $(document).ready(function () {
   $(".answers").hide();
   $("#image").hide();
   $("#start").on("click", startGame);
+  $("#restart").hide();
   // $(document).on('click' , '.option', guessChecker);
   // $("#firstAnswer").hide(); 
 });
@@ -66,7 +67,30 @@ var beyonce = [{
   img: "assets/images/Blue.gif",
 },]
 
-
+function restartGame() {
+  currentSet = 0;
+  correctAnswers = 0;
+  incorrectAnswers = 0;
+  unanswered = 0;
+  i = 0;
+  $('#start').hide();
+  $('#restart').hide();
+  $('#results').hide();
+  $("#remaining-time").show();
+  $("#myQuestions").show();
+  $("#myQuestions").text(beyonce[i].question);
+  $(".answers").show();
+  $(".answer1").show();
+  $(".answer1").text(beyonce[i].option1);
+  $(".answer2").show();
+  $(".answer2").text(beyonce[i].option2);
+  $(".answer3").show();
+  $(".answer3").text(beyonce[i].option3);
+  $(".answer4").show();
+  $(".answer4").text(beyonce[i].option4);
+  nextQuestion();
+// console.log("working");
+};
 function startGame() {
   currentSet = 0;
   correctAnswers = 0;
@@ -78,6 +102,8 @@ function startGame() {
   // $('#timer').text(timer);
   // $('#timerTwo').text(timerTwo);
   $('#start').hide();
+  $("#remaining-time").show();
+
 
   // $('#remaining-time').show();
   nextQuestion();
@@ -90,23 +116,8 @@ function nextQuestion() {
   //  $('#timer').removeClass('last-seconds');
   // $("#results").hide();
   // $("#timer").show();
-
   newScreen();
 
-  //    var countDown = setInterval (timesUp, 1000);
-  // timesUp();
-  // function timesUp(){
-  //   timer --;
-
-  //   $("#timer").text(timer);
-  //   if (timer === 0){
-  //     clearInterval(countDown);
-  //     i++;
-  //     newScreen();
-  //     unanswered++;
-
-  //   }
-  // }
 
 };
 function yayYou() {
@@ -185,12 +196,14 @@ function gifTimer(){
     console.log("here");
     timer = 21;
     timer--;
+    $("#timer").show();
     $("#timer").text(timer);
+    
     // timesUp();
     // startInterval(reStart);
-
     if (i < beyonce.length) {
       $("#remaining-time").show();
+      $("#myQuestions").show();
       $("#myQuestions").text(beyonce[i].question);
       $(".answer1").text(beyonce[i].option1);
       $(".answer2").text(beyonce[i].option2);
@@ -217,6 +230,8 @@ function gifTimer(){
       $("#myQuestions").hide();
       $(".answers").hide();
       $("#remaining-time").hide();
+      $("#restart").show();
+      $("#restart").on("click", restartGame);
     }
   }
   // var reStart = startInterval ( timesUp, 1000);  
